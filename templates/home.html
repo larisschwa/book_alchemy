@@ -8,17 +8,18 @@
 </head>
 <body>
 
-<!-- Display Message (if any) -->
 {% if message %}
     <div>{{ message }}</div>
 {% endif %}
 
-<!-- Search and Sorting Form -->
+<button onclick="window.location.href='/add_book'">Add Book</button>
+
+<button onclick="window.location.href='/add_author'">Add Author</button>
+
+
 <form action="/" method="GET">
-    <!-- Search Input -->
     <input type="text" name="query" placeholder="Search for a book...">
 
-    <!-- Dropdown for Sorting -->
     <select name="sort_by">
         <option value="title" {% if sort_by == 'title' %}selected{% endif %}>Sort by Title</option>
         <option value="author" {% if sort_by == 'author' %}selected{% endif %}>Sort by Author</option>
@@ -27,7 +28,6 @@
     <input type="submit" value="Search/Sort">
 </form>
 
-<!-- Display Books or No Books Message -->
 {% if books %}
     <ul>
     {% for book in books %}
@@ -36,7 +36,6 @@
             <p>By {{ book.author.name }}</p>
             <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-M.jpg" alt="Cover image for {{ book.title }}">
 
-            <!-- Delete Book Button -->
             <form action="{{ url_for('delete_book', book_id=book.id) }}" method="POST" style="display:inline;">
                 <input type="submit" value="Delete Book" onclick="return confirm('Are you sure you want to delete this book?');">
             </form>

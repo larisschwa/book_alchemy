@@ -3,8 +3,7 @@ from data_models import db, Author, Book
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = \
-    'sqlite:////Users/larissamatteau/PycharmProjects/book_alchemy/data/library.sqlite '
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.sqlite'
 db.init_app(app)
 
 with app.app_context():
